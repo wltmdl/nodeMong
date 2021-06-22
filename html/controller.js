@@ -31,3 +31,10 @@ export const removeAll= async(req,res)=>{
     if (check) await imageModel.deleteMany({});
     res.render("list",{theList:[]});
 }
+
+export const search= async (req,res)=>{
+    const x = req.query.search;
+    let i = [];
+    await imageModel.findOne({title:x},(err,doc)=>{ if(doc) i.push(doc)});
+    res.render("list",{theList:i})
+}
