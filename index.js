@@ -1,18 +1,13 @@
-import bodyParser from "body-parser";
-import express from "express";
-
 import appRouter from "./app";
-import { add } from "./html/controller";
+import { add, removeAll, see_list } from "./html/controller";
 
-const app = express();
+//app.get('/', (req,res)=>{res.status(200).set("Content-Type","text/html").sendFile(__dirname+'/html'+"/home.html")});
+
+appRouter.get('/', (req,res)=>{res.render("home")});
+
+appRouter.get('/remove', removeAll);
+
+appRouter.route('/add').post(add).get(see_list);
 
 const PORT = process.env.port || 5000;
-
-//app.use(express.static(__dirname+'/html'));
-app.use(bodyParser.urlencoded({extended:false}))
-//app.use(express.json());
-
-app.get('/', (req,res)=>{res.status(200).set("Content-Type","text/html").sendFile(__dirname+'/html'+"/home.html")});
-app.post('/add', add);
-
-app.listen(PORT,()=>{console.log("express start!")});
+appRouter.listen(PORT,()=>{console.log("express start!")});
