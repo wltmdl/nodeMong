@@ -4,3 +4,4 @@
 
 ? - without template engine 없이 html 끼리 js 값을 받아 사용하는 방법은?
 
+0622- "01.02: mongodb save & deleteMany , pug"
